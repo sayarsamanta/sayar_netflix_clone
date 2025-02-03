@@ -1,13 +1,14 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router";
-import Home from "./Home";
+import Home from "./Login";
 import Browse from "./Browse";
+import Login from "./Login";
 
 function Body() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Login />,
     },
     {
       path: "/browse",
