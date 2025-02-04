@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { validEmail, validPassword } from "../utils/validation";
@@ -6,48 +6,83 @@ import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import GoogleSignin from "../hooks/GoogleSignin";
-
+import { profileImage } from "../utils/helper";
+import { LuLoader } from "react-icons/lu";
 function Login() {
   const [isSignInForm, setIsSignInForm] = useState(true);
-
-  const handleSignInOrSignUp = (email, password) => {
+  const [error, setError] = useState();
+  const [loader, setLoader] = useState(false);
+  const handleSignInOrSignUp = (name, email, password) => {
+    setLoader(true);
     if (isSignInForm) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+
           // ...
+          if (user) {
+            const userObj = {
+              displayName: name,
+              photoURL: profileImage,
+            };
+            updateProfile(auth.currentUser, userObj)
+              .then((response) => {
+                // Profile updated!
+                // ...
+                setLoader(false);
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+                setLoader(false);
+              });
+          }
         })
         .catch((error) => {
-          console.log(error);
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          //console.log(error);
+          setError("Error occured while signing in");
+          setLoader(false);
         });
     } else {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
-          // ...
+          if (user) {
+            const userObj = {
+              displayName: name,
+              photoUrl: profileImage,
+            };
+            updateProfile(auth.currentUser, userObj)
+              .then((response) => {
+                // Profile updated!
+                // ...
+                setLoader(false);
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+                setLoader(false);
+              });
+          }
         })
         .catch((error) => {
-          console.log(error);
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          setError("Error occured while creating profile");
+          setLoader(false);
           // ..
         });
     }
   };
   return (
-    <div>
+    <div className="bg-black">
       <Header />
-      <div className="flex absolute h-screen w-screen bg-black">
+      <div className="flex absolute h-full w-screen bg-black">
         <img
-          className="h-screen w-screen object-fill"
+          className="hidden sm:hidden md:block lg:block xl:block h-screen w-screen object-fill"
           alt="background logo"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_large.jpg"
         ></img>
@@ -57,10 +92,13 @@ function Login() {
         initialValues={{
           email: "",
           password: "",
+          name: "",
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.email) {
+          if (!isSignInForm && !values.name) {
+            errors.name = "Required";
+          } else if (!values.email) {
             errors.email = "Required";
           } else if (validEmail(values.email)) {
             errors.email = "Invalid email address";
@@ -72,10 +110,10 @@ function Login() {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          const { email, password } = values;
-          console.log(values);
+          const { email, password, name } = values;
+          //console.log(values);
           setSubmitting(false);
-          handleSignInOrSignUp(email, password);
+          handleSignInOrSignUp(name, email, password);
         }}
       >
         {({ isSubmitting }) => (
@@ -83,8 +121,23 @@ function Login() {
             <h1 className="text-white py-4 text-2xl font-semibold">
               {isSignInForm ? "Sign In" : "Sign Up"}
             </h1>
+            {!isSignInForm && (
+              <>
+                <Field
+                  className="bg-transparent border-[0.5px] h-12 p-4 w-full text-white rounded-md"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-xs py-1"
+                />
+              </>
+            )}
             <Field
-              className="bg-transparent border-[0.5px] h-12 p-4 w-full text-white rounded-md"
+              className="bg-transparent border-[0.5px] h-12 p-4 w-full text-white rounded-md mt-3"
               type="email"
               name="email"
               placeholder="Email or mobile number"
@@ -105,13 +158,24 @@ function Login() {
               component="div"
               className="text-red-500 text-xs py-1"
             />
+
             <button
               className="flex p-4 my-6 h-12 justify-center items-center bg-red-700 w-full rounded-lg text-white"
               type="submit"
               disabled={isSubmitting}
             >
-              {isSignInForm ? "Sign In" : "Sign Up"}
+              {loader ? (
+                <LuLoader className="animate-spin " />
+              ) : isSignInForm ? (
+                "Sign In"
+              ) : (
+                "Sign Up"
+              )}
+              {/* {!loader && isSignInForm ? "Sign In" : "Sign Up"}
+              {loader && <LuLoader className="animate-spin " />} */}
             </button>
+            {error && <span className="text-red-600 text-sm">{error}</span>}
+
             <p className="text-gray-400 text-sm">
               {isSignInForm ? "New User " : "Already have an account? "}
               <strong
@@ -124,6 +188,7 @@ function Login() {
               </strong>{" "}
               here
             </p>
+
             <div className="flex justify-center mt-6"></div>
             <GoogleSignin />
           </Form>
