@@ -9,8 +9,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import GoogleSignin from "../hooks/GoogleSignin";
-import { profileImage } from "../utils/helper";
+import { profileImage } from "../utils/constants";
 import { LuLoader } from "react-icons/lu";
+import BackgroundImage from "./BackgroundImage";
 function Login() {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [error, setError] = useState();
@@ -80,14 +81,7 @@ function Login() {
   return (
     <div className="bg-black">
       <Header />
-      <div className="flex absolute h-full w-screen bg-black">
-        <img
-          className="hidden sm:hidden md:block lg:block xl:block h-screen w-screen object-fill"
-          alt="background logo"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_large.jpg"
-        ></img>
-      </div>
-
+      <BackgroundImage />
       <Formik
         initialValues={{
           email: "",
@@ -100,7 +94,7 @@ function Login() {
             errors.name = "Required";
           } else if (!values.email) {
             errors.email = "Required";
-          } else if (validEmail(values.email)) {
+          } else if (!validEmail(values.email)) {
             errors.email = "Invalid email address";
           } else if (!values.password) {
             errors.password = "Required";

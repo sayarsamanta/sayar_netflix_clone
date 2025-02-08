@@ -8,7 +8,9 @@ function App() {
   return (
     <Provider store={store}>
       <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-        <Body />
+        <div className="h-screen w-screen">
+          <Body />
+        </div>
       </GoogleOAuthProvider>
     </Provider>
   );

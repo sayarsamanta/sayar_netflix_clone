@@ -9,28 +9,23 @@ import Login from "./Login";
 import Browse from "./Browse";
 import PageNotFound from "./PageNotFound";
 import PrivateRoutes from "../PrivateRoutes";
+import Favorites from "./Favorites";
+import Rootlayout from "./Rootlayout";
+import SearchPage from "./search/SearchPage";
 
 function Body() {
-  // const routes = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: <Login />,
-  //   },
-  //   {
-  //     path: "/browse",
-  //     element: <Browse />,
-  //   },
-  // ]);
-  //console.log("from body", JSON.parse(localStorage.getItem("data")));
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/">
+      <Route path="/" element={<Rootlayout />}>
         {/* All other routes that you want to protect will go inside here */}
-        <Route element={<PrivateRoutes />}>
-          <Route path="browse" element={<Browse />} />
-        </Route>
+        {/* <Route element={<PrivateRoutes />}> */}
+        <Route path="browse" element={<Browse />}></Route>
+        <Route path="favorites" element={<Favorites />} />
+        <Route path="search" element={<SearchPage />} />
+
+        {/* </Route> */}
         <Route index element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
       </Route>
     )
   );
