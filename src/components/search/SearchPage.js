@@ -3,6 +3,7 @@ import { option } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedMovies } from "../../redux/slice/SearchSlice";
 import MovieCard from "../movie/MovieCard";
+import ModalComponent from "../ModalComponent";
 
 function SearchPage() {
   const searchRef = useRef();
@@ -29,7 +30,7 @@ function SearchPage() {
     };
   }
   return (
-    <div className="flex h-screen bg-black justify-center items-center">
+    <div className="flex h-screen bg-black ">
       <div>
         {/* <img
           className="hidden absolute sm:hidden md:block lg:block xl:block h-screen w-screen object-fill"
@@ -40,7 +41,7 @@ function SearchPage() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="flex absolute z-40 w-[60%] md:w-[60%] sm:w-[60%] lg:w-[60%] xl:w-[60%] bg-black mx-auto right-0 left-0 top-0  bg-opacity-80 my-28 rounded-lg p-10 items-center self-center"
+          className="flex w-[60%] mt-[10%] bg-black mx-auto  bg-opacity-80 rounded-lg p-10 items-center self-center"
         >
           <input
             ref={searchRef}
@@ -58,7 +59,7 @@ function SearchPage() {
           </button>
         </form>
         {searchedMovies?.length ? (
-          <div className=" bg-black flex flex-wrap w-screen justify-center items-center self-center pt-[50%] pb-10">
+          <div className=" bg-black flex flex-wrap w-screen justify-center items-center self-center pb-10">
             {searchedMovies?.map((movie) => (
               <MovieCard key={movie?.id} movie={movie} />
             ))}
@@ -66,6 +67,7 @@ function SearchPage() {
           </div>
         ) : null}
       </div>
+      <ModalComponent />
     </div>
   );
 }

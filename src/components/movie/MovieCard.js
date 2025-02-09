@@ -69,7 +69,7 @@ function MovieCard({ movie }) {
       }}
       id={id}
       key={id}
-      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 shadow-lg group mt-2"
+      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 shadow-lg group mt-2 cursor-pointer"
     >
       <div className="relative overflow-hidden">
         <img

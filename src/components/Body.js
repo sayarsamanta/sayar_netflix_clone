@@ -12,6 +12,7 @@ import PrivateRoutes from "../PrivateRoutes";
 import Favorites from "./Favorites";
 import Rootlayout from "./Rootlayout";
 import SearchPage from "./search/SearchPage";
+import Player from "./player/Player";
 
 function Body() {
   const router = createBrowserRouter(
@@ -22,6 +23,7 @@ function Body() {
         <Route path="browse" element={<Browse />}></Route>
         <Route path="favorites" element={<Favorites />} />
         <Route path="search" element={<SearchPage />} />
+        <Route path="player" element={<Player />} />
 
         {/* </Route> */}
         <Route index element={<Login />} />

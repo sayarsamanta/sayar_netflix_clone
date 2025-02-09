@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import { movie_poster_base_url } from "../../utils/constants";
 import { FaPlay } from "react-icons/fa";
 import { CiCircleInfo } from "react-icons/ci";
+import { Link, useNavigate } from "react-router";
 
 function VideoTitle({ itemIndex }) {
   const { topRated } = useSelector((store) => store?.movie);
+  const navigate = useNavigate();
   if (!topRated?.length) return;
   const { original_title, overview, backdrop_path, release_date } =
     topRated[itemIndex];
@@ -26,7 +28,10 @@ function VideoTitle({ itemIndex }) {
         {overview}
       </p>
       <div className="py-3 flex">
-        <div className="flex bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8">
+        <Link
+          to={"/player"}
+          className="flex bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8"
+        >
           <FaPlay
             className="hidden sm:block md:block lg:block"
             fill="black"
@@ -35,7 +40,7 @@ function VideoTitle({ itemIndex }) {
           <button className=" text-black  text-xs lg:text-sm xl:text-sm md:text-sm">
             Play
           </button>
-        </div>
+        </Link>
         <div className="h-6 sm:h-6 md:h-8 lg:h-10 xl:h-10 bg-gray-600 text-white justify-between items-center rounded-md ml-3 flex px-5">
           <CiCircleInfo
             className="hidden sm:block md:block lg:block"

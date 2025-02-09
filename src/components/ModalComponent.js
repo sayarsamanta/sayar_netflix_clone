@@ -7,28 +7,36 @@ import { time_convert } from "../utils/helper";
 import { BsBadgeHd } from "react-icons/bs";
 import RecommendationCard from "./movie/RecommendationCard";
 import { movie_poster_base_url } from "../utils/constants";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "10px",
-    backgroundColor: "black",
-    height: "90%",
-  },
-};
+import useWindowDimensions from "../hooks/useWindowDimensions";
+
 function ModalComponent() {
   const { showModal, movieDetails, recommendations } = useSelector(
     (store) => store.movie
   );
-  console.log(movieDetails);
-  const dispatch = useDispatch();
-  const onOpenModal = () => {
-    dispatch(setModal());
+  const { width } = useWindowDimensions();
+  console.log(width);
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "10px",
+      backgroundColor: "black",
+      height: "90%",
+      width:
+        width < 800
+          ? "100%"
+          : width < 1000
+          ? "80%"
+          : width < 1200
+          ? "70%"
+          : "60%",
+    },
   };
+  const dispatch = useDispatch();
   const onCloseModal = () => {
     dispatch(setModal());
   };
@@ -56,11 +64,12 @@ function ModalComponent() {
       >
         <div className="bg-black scale-[1]">
           <h1 className="text-white text-lg mt-3 absolute">{original_title}</h1>
-          <span className="w-full text-xs absolute mt-9 text-white bg-gradient-to-t from-black">
+          <span className="w-full text-xs absolute mt-9 text-white ">
             {release_date}
           </span>
           <iframe
-            class="h-[500px] w-[800px] aspect-video border: none m:none; p:none pointer-events-none rounded-md"
+            width={width < 800 ? "100%" : "100%"}
+            class="h-[500px] aspect-video border: none m:none; p:none pointer-events-none rounded-md"
             title="Youtube player"
             allow="autoplay; encrypted-media"
             sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
@@ -97,7 +106,7 @@ function ModalComponent() {
                   </p>
                 ))}
               </div>
-              <p className="w-[600px] text-sm">{overview}</p>
+              <p className="text-sm">{overview}</p>
               {production_companies?.length && (
                 <>
                   <h1 className="mt-4">{"Produced by"}</h1>
@@ -107,7 +116,7 @@ function ModalComponent() {
                       return (
                         <img
                           alt="production_companies"
-                          className="w-7"
+                          className="w-7 h-10"
                           src={movie_poster_base_url + com?.logo_path}
                         ></img>
                       );
@@ -116,7 +125,7 @@ function ModalComponent() {
                 </>
               )}
 
-              <div className="flex fixed flex-wrap mt-10 pb-10">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-7 mt-10 pb-10">
                 <h1 className="text-center text-white text-xl">
                   {"Recommendations"}
                 </h1>
