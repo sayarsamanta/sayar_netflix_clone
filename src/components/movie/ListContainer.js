@@ -1,7 +1,6 @@
 import React from "react";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
-import ModalComponent from "../ModalComponent";
 
 function ListContainer() {
   const { topRated, upcoming, popular, nowPlaying } = useSelector(
