@@ -125,7 +125,6 @@ function ModalComponent() {
                   <h1 className="mt-4">{"Produced by"}</h1>
                   <div className="flex flex-wrap">
                     {production_companies?.map((com) => {
-                      if (!com?.logo_path) return;
                       return (
                         <img
                           alt="production_companies"
