@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 .env
-/src/utils/firebase.js
+/src/utils/firebaseConfig.js
 .gitignore
 # testing
 /coverage
