@@ -16,6 +16,7 @@ function useFetchMovieTrailer({ id }) {
       dispatch(addMovieTrailer(json?.results));
     };
     fetchMovieVideo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   return <div></div>;
 }
