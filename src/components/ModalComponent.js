@@ -65,32 +65,34 @@ function ModalComponent() {
       >
         <div className="bg-black scale-[1]">
           <h1 className="text-white text-lg mt-3 absolute">{original_title}</h1>
-          <span className="w-full text-xs absolute mt-9 text-white ">
+          <span className="text-xs absolute mt-9 text-white ">
             {release_date}
           </span>
           <iframe
             width={width < 800 ? "100%" : "100%"}
-            class="h-[500px] aspect-video border: none m:none; p:none pointer-events-none rounded-md"
+            class="h-[500px] aspect-video rounded-md"
             title="Youtube player"
             allow="autoplay; encrypted-media"
             sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
             src={`https://youtube.com/embed/${key}?autoplay=1&mute=1&showinfo=0&controls=0&modestbranding=1&autohide=1&playsinline=1&color=white&loop=1&playlist=${key}`}
           ></iframe>
-          <IoCloseCircle
-            onClick={() => {
-              onCloseModal();
-            }}
-            className="absolute top-0 right-0 m-4 cursor-pointer"
-            fill="white"
-            size={40}
-          />
+          <div className="z-10 absolute top-10 right-0 m-4 cursor-pointer pointer-events: none ">
+            <IoCloseCircle
+              onClick={() => {
+                onCloseModal();
+              }}
+              fill="white"
+              size={40}
+            />
+          </div>
+
           <div
             //to={`/player/${id}`}
             onClick={() => {
               dispatch(setModal());
               navigate(`/player/${id}`);
             }}
-            className="flex absolute bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8 top-[80%] left-5"
+            className="flex absolute bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8 top-[70%] left-5"
           >
             <FaPlay
               className="hidden sm:block md:block lg:block"
