@@ -2,11 +2,18 @@ import React from "react";
 import { movie_poster_base_url } from "../../utils/constants";
 import { BsBadgeHd } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoPlay } from "react-icons/io5";
+import { setModal } from "../../redux/slice/MovieSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 function RecommendationCard({ movie }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   if (!movie?.backdrop_path) return;
   return (
     <div
-      className="h-auto mr-5 mt-10 rounded-md bg-myColor w-auto"
+      className=" relative h-auto mr-5 mt-10 rounded-md bg-myColor w-auto"
       key={movie?.id}
     >
       <img
@@ -14,6 +21,15 @@ function RecommendationCard({ movie }) {
         className="w-auto h-auto rounded-bl-none rounded-br-none rounded-md"
         src={movie_poster_base_url + movie?.backdrop_path}
       ></img>
+      <div
+        onClick={() => {
+          dispatch(setModal());
+          navigate(`/player/${movie?.id}`);
+        }}
+        className="cursor-pointer absolute z-30 rounded-full border-[0.5px] w-6 h-6 border-color top-10 left-[45%] items-center flex justify-center"
+      >
+        <IoPlay fill="white" size={15} />
+      </div>
       <div className="flex items-center px-5 py-5 text-white justify-between">
         <div className="flex items-center">
           <div className="text-white border-[0.5px] md:w-14 lg:w-14 xl:w-14 sm:w-14 justify-center items-center h-6 flex border-white">

@@ -38,7 +38,8 @@ function useFetchTopRatedMovies() {
         dispatch(addPopularMovies(response[3]?.results));
       })
       .catch((error) => console.log(error));
-  }, [dispatch]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return;
 }
 

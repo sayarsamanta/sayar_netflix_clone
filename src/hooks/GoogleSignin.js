@@ -45,7 +45,8 @@ function GoogleSignin() {
         })
         .catch((err) => console.log(err));
     }
-  }, [user, dispatch, navigate]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);

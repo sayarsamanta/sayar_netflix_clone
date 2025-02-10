@@ -39,7 +39,8 @@ function Header() {
       }
     });
     return () => listener();
-  }, [dispatch, navigate, storedData?.user_id]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const signOutUser = () => {
     if (user?.user_id || storedData?.user_id) {
