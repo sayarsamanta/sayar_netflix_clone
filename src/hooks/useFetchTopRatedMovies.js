@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { option } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import {
@@ -9,20 +9,8 @@ import {
 } from "../redux/slice/MovieSlice";
 function useFetchTopRatedMovies() {
   const dispatch = useDispatch();
-  const fetchMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
-      option
-    );
-    const json = await data.json();
-    if (json?.results?.length) {
-      dispatch(addTopRated(json?.results));
-    }
-  };
-  useEffect(() => {
-    fetchMovies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const urls = [
       "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
@@ -36,11 +24,12 @@ function useFetchTopRatedMovies() {
         dispatch(addUpcomingMovies(response[1]?.results));
         dispatch(addNowPlaying(response[2]?.results));
         dispatch(addPopularMovies(response[3]?.results));
+        setLoading(false);
       })
       .catch((error) => console.log(error));
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return;
+  return loading;
 }
 
 export default useFetchTopRatedMovies;

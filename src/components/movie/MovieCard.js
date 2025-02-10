@@ -60,7 +60,7 @@ function MovieCard({ movie }) {
     <div
       id={id}
       key={id}
-      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer"
+      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer transition duration-500 hover:scale-x-105 hover:z-50"
     >
       <div className="relative overflow-hidden">
         <img
@@ -87,7 +87,7 @@ function MovieCard({ movie }) {
         </div> */}
         <div
           id={id}
-          className="absolute top-[4px] right-2 sm:top-[5px] sm:right-2 md:top-[5px] md:right-2 lg:top-[7px] lg:right-3 xl:top-[7px] xl:right-5 self-end cursor-pointer"
+          className="block absolute top-[4px] right-2 sm:top-[5px] sm:right-2 md:top-[5px] md:right-2 lg:top-[7px] lg:right-3 xl:top-[7px] xl:right-5 self-end cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             addToWatchList(id);

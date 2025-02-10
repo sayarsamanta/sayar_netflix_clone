@@ -35,7 +35,7 @@ function VideoTitle({ itemIndex }) {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="py-40 md:py-50 lg:py-60 xl:py-60 px-8 text-white absolute">
+    <div className="py-[30%] sm:py-[75%] md:py-[50%] lg:py-[30%] xl:py-60 px-8 text-white absolute bg-gradient-to-t from-black w-screen">
       <img
         className="hidden w-56 rounded-md"
         alt="movieposter"
@@ -47,7 +47,7 @@ function VideoTitle({ itemIndex }) {
       <span className="text-xs md:text-sm lg:text-sm xl:text-lg text-center">
         {release_date}
       </span>
-      <p className="w-[300px] sm:w-[400px] lg:w-[500px] xl:[600px] text-xs md:text-sm lg:text-sm xl:text-lg line-clamp-2 hover:line-clamp-3">
+      <p className="w-[300px] sm:w-[400px] lg:w-[500px] xl:[600px] text-xs md:text-sm lg:text-sm xl:text-lg line-clamp-2">
         {overview}
       </p>
       <div className="py-3 flex">

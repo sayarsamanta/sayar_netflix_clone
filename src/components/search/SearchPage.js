@@ -1,14 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { option } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedMovies } from "../../redux/slice/SearchSlice";
 import MovieCard from "../movie/MovieCard";
+import SearchLoader from "../ShimmerLoader/SearchLoader";
 
 function SearchPage() {
   const searchRef = useRef();
   const dispatch = useDispatch();
   const { searchedMovies } = useSelector((store) => store?.search);
+  const [loading, setLoading] = useState(false);
   const handleApi = async () => {
+    setLoading(true);
     const data = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${searchRef.current.value}&include_adult=false&language=en-US&page=1`,
       option
@@ -16,6 +19,7 @@ function SearchPage() {
     const json = await data.json();
     if (json?.results?.length) {
       dispatch(setSearchedMovies(json?.results));
+      setLoading(false);
     }
   };
 
@@ -40,7 +44,7 @@ function SearchPage() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="flex w-[600px] bg-black mx-auto  bg-opacity-80 rounded-lg p-10 items-center self-center"
+          className="flex w-[400px] sm:w-[500px] md:w-[600px] lg:w-[600px] xl:w-[700px] bg-black mx-auto  bg-opacity-80 rounded-lg p-10 items-center self-center"
         >
           <input
             ref={searchRef}
@@ -57,14 +61,15 @@ function SearchPage() {
             Search
           </button>
         </form>
-        {searchedMovies?.length ? (
+        {loading ? (
+          <SearchLoader />
+        ) : (
           <div className=" bg-black flex flex-wrap w-screen justify-center items-center self-center pb-10">
             {searchedMovies?.map((movie) => (
               <MovieCard key={movie?.id} movie={movie} />
             ))}
-            {/* <MovieList title={"Searched Movies"} movies={searchedMovies} /> */}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
