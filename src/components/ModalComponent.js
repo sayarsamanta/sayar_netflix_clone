@@ -9,7 +9,7 @@ import RecommendationCard from "./movie/RecommendationCard";
 import { movie_poster_base_url } from "../utils/constants";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { FaPlay } from "react-icons/fa";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 function ModalComponent() {
   const { showModal, movieDetails, recommendations } = useSelector(
@@ -38,6 +38,7 @@ function ModalComponent() {
     },
   };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onCloseModal = () => {
     dispatch(setModal());
   };
@@ -83,8 +84,12 @@ function ModalComponent() {
             fill="white"
             size={40}
           />
-          <Link
-            to={`/player/${id}`}
+          <div
+            //to={`/player/${id}`}
+            onClick={() => {
+              dispatch(setModal());
+              navigate(`/player/${id}`);
+            }}
             className="flex absolute bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8 top-[80%] left-5"
           >
             <FaPlay
@@ -95,7 +100,7 @@ function ModalComponent() {
             <button className=" text-black  text-xs lg:text-sm xl:text-sm md:text-sm">
               Play
             </button>
-          </Link>
+          </div>
           <div className="absolute flex-wrap text-white w-full -bottom-30 ">
             <div className="mt-3 px-2 bg-gradient-to-t from-black">
               <div className="flex justify-start items-center">

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { option } from "../../utils/constants";
 function Player() {
   const { videoId } = useParams();
+  console.log(videoId);
   const [key, setKey] = useState();
   const fetchKeyOfVideo = async (id) => {
     const data = await fetch(
@@ -11,7 +12,6 @@ function Player() {
       option
     );
     const json = await data.json();
-    console.log(json);
     const filteredMovies = json?.results?.filter(
       (movie) => movie.type === "Clip"
     );
@@ -26,6 +26,7 @@ function Player() {
     <div className="bg-black h-screen justify-center items-center self-center flex rounded-md">
       <ReactPlayer
         width={"60%"}
+        muted={true}
         url={`https://www.youtube.com/watch?v=${key}?&theme=dark&autohide=2&modestbranding=1&showinfo=0`}
         frameborder="0"
         controls={true}
