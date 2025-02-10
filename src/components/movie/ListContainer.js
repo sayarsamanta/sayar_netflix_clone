@@ -9,13 +9,14 @@ function ListContainer() {
   );
   if (!topRated?.length) return;
   return (
-    <div className="bg-black">
-      <div className="mt-0 sm:-mt-22 md:-mt-22 lg:-mt-32 xl:-mt-36 ">
+    <div className="w-screen">
+      <div className="">
         <MovieList title={"Now Playing"} movies={nowPlaying}></MovieList>
-        <MovieList title={"Top Rated"} movies={topRated}></MovieList>
-        <MovieList title={"Upcoming"} movies={upcoming}></MovieList>
-        <MovieList title={"Popular"} movies={popular}></MovieList>
-        <ModalComponent />
+        <div className="bg-black ">
+          <MovieList title={"Top Rated"} movies={topRated}></MovieList>
+          <MovieList title={"Upcoming"} movies={upcoming}></MovieList>
+          <MovieList title={"Popular"} movies={popular}></MovieList>
+        </div>
       </div>
     </div>
   );

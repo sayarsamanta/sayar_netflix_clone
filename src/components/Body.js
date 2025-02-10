@@ -23,7 +23,7 @@ function Body() {
         <Route path="browse" element={<Browse />}></Route>
         <Route path="favorites" element={<Favorites />} />
         <Route path="search" element={<SearchPage />} />
-        <Route path="player" element={<Player />} />
+        <Route path="player/:videoId" element={<Player />} />
 
         {/* </Route> */}
         <Route index element={<Login />} />

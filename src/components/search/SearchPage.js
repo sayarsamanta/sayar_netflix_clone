@@ -30,8 +30,8 @@ function SearchPage() {
     };
   }
   return (
-    <div className="flex h-screen bg-black ">
-      <div>
+    <div className="flex h-screen w-screen bg-black ">
+      <div className="mt-24 w-screen justify-items-start items-start ">
         {/* <img
           className="hidden absolute sm:hidden md:block lg:block xl:block h-screen w-screen object-fill"
           alt="background logo"
@@ -41,7 +41,7 @@ function SearchPage() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="flex w-[60%] mt-[10%] bg-black mx-auto  bg-opacity-80 rounded-lg p-10 items-center self-center"
+          className="flex w-[600px] bg-black mx-auto  bg-opacity-80 rounded-lg p-10 items-center self-center"
         >
           <input
             ref={searchRef}
@@ -67,7 +67,6 @@ function SearchPage() {
           </div>
         ) : null}
       </div>
-      <ModalComponent />
     </div>
   );
 }

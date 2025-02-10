@@ -7,7 +7,7 @@ function VideoContainer({ itemIndex }) {
   const { topRated } = useSelector((store) => store?.movie);
   if (!topRated.length) return;
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <VideoTitle itemIndex={itemIndex} />
       <VideoPlayer id={topRated[itemIndex]?.id} />
     </div>

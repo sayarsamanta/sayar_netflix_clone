@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 
 function MovieList({ title, movies }) {
   return (
-    <div className="mx-5 mt-3 bg-gradient-to-b from-black rounded-md">
+    <div className="mx-5 mt-3 rounded-md">
       <div className="p-3">
         <h1 className="text-white text-sm md:text-lg lg:text-xl xl:text-xl font-semibold">
           {title}

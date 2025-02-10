@@ -1,16 +1,39 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { movie_poster_base_url } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { movie_poster_base_url, option } from "../../utils/constants";
 import { FaPlay } from "react-icons/fa";
 import { CiCircleInfo } from "react-icons/ci";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import {
+  addMovieDetails,
+  addRecommendation,
+  setModal,
+} from "../../redux/slice/MovieSlice";
 
 function VideoTitle({ itemIndex }) {
   const { topRated } = useSelector((store) => store?.movie);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   if (!topRated?.length) return;
-  const { original_title, overview, backdrop_path, release_date } =
+  const { original_title, overview, backdrop_path, release_date, id } =
     topRated[itemIndex];
+  const showInfo = (movieId) => {
+    const urls = [
+      `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1`,
+    ];
+    Promise.all(urls.map((url) => fetch(url, option).then((r) => r.json())))
+      .then((response) => {
+        const filteredMovies = response[1]?.results?.filter(
+          (movie) => movie.type === "Trailer"
+        );
+        const videoId = filteredMovies.length ? filteredMovies[0].key : "";
+        dispatch(addMovieDetails({ ...response[0], key: videoId }));
+        dispatch(addRecommendation(response[2]?.results));
+        dispatch(setModal());
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="py-40 md:py-50 lg:py-60 xl:py-60 px-8 text-white absolute">
       <img
@@ -29,7 +52,7 @@ function VideoTitle({ itemIndex }) {
       </p>
       <div className="py-3 flex">
         <Link
-          to={"/player"}
+          to={`/player/${id}`}
           className="flex bg-white h-6 w-14 sm:h-6 sm:w-18 md:h-8 md:w-22 lg:h-10 lg:w-28 xl:h-10 xl:w-28 rounded-md justify-between items-center px-4 sm:px-4 md:px-4 lg:px-8 xl:px-8"
         >
           <FaPlay
@@ -41,7 +64,12 @@ function VideoTitle({ itemIndex }) {
             Play
           </button>
         </Link>
-        <div className="h-6 sm:h-6 md:h-8 lg:h-10 xl:h-10 bg-gray-600 text-white justify-between items-center rounded-md ml-3 flex px-5">
+        <div
+          onClick={() => {
+            showInfo(id);
+          }}
+          className="h-6 sm:h-6 md:h-8 lg:h-10 xl:h-10 bg-gray-600 text-white justify-between items-center rounded-md ml-3 flex px-5"
+        >
           <CiCircleInfo
             className="hidden sm:block md:block lg:block"
             size={20}

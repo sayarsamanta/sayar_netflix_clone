@@ -52,6 +52,7 @@ function Header() {
       .then(() => {
         // Sign-out successful.
         dispatch(removeUser);
+        localStorage.removeItem("data");
       })
       .catch((error) => {
         // An error happened.
@@ -68,7 +69,7 @@ function Header() {
         src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
         className="bg-cover bg-no-repeat w-20 sm:w-30 md:w-40 lg:w-40 xl:w-40 cursor-pointer"
       ></img>
-      {(user || storedData?.photoURL) && (
+      {(user?.user_id || storedData?.photoURL) && (
         <div className="group">
           <div className="flex justify-center items-center">
             <Link to={"favorites"}>
@@ -102,7 +103,7 @@ function Header() {
             </div>
           </div>
 
-          {showMenu && (
+          {showMenu && user && (
             <div className="w-32 h-10 flex bg-white text-black rounded-md absolute right-4 top-20 z-30 justify-center items-center">
               <IoIosArrowUp className="absolute -top-4 right-4 " fill="white" />
               <p

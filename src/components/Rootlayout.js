@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Header from "./Header";
+import ModalComponent from "./ModalComponent";
 
 function Rootlayout() {
   return (
@@ -10,6 +11,7 @@ function Rootlayout() {
       </div>
 
       <Outlet />
+      <ModalComponent />
     </div>
   );
 }
