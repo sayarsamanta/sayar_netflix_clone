@@ -21,6 +21,7 @@ function useFetchTopRatedMovies() {
   };
   useEffect(() => {
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     const urls = [
@@ -37,7 +38,7 @@ function useFetchTopRatedMovies() {
         dispatch(addPopularMovies(response[3]?.results));
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [dispatch]);
   return;
 }
 

@@ -45,7 +45,7 @@ function GoogleSignin() {
         })
         .catch((err) => console.log(err));
     }
-  }, [user]);
+  }, [user, dispatch, navigate]);
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);

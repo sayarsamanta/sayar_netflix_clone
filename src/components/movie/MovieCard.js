@@ -55,14 +55,7 @@ function MovieCard({ movie }) {
     }
   };
   if (!movie?.backdrop_path) return;
-  const {
-    id,
-    original_title,
-    release_date,
-    overview,
-    isFavorite = false,
-    backdrop_path,
-  } = movieItem;
+  const { id, isFavorite = false, backdrop_path } = movieItem;
   return (
     <div
       id={id}

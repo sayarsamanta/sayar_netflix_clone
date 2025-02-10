@@ -3,7 +3,6 @@ import { option } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedMovies } from "../../redux/slice/SearchSlice";
 import MovieCard from "../movie/MovieCard";
-import ModalComponent from "../ModalComponent";
 
 function SearchPage() {
   const searchRef = useRef();

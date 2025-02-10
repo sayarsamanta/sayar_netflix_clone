@@ -2,9 +2,7 @@ import React from "react";
 import { movie_poster_base_url } from "../../utils/constants";
 import { BsBadgeHd } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 function RecommendationCard({ movie }) {
-  const { width } = useWindowDimensions();
   if (!movie?.backdrop_path) return;
   return (
     <div

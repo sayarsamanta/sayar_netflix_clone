@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
-import PageNotFound from "./PageNotFound";
-import PrivateRoutes from "../PrivateRoutes";
 import Favorites from "./Favorites";
 import Rootlayout from "./Rootlayout";
 import SearchPage from "./search/SearchPage";
