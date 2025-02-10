@@ -60,7 +60,7 @@ function MovieCard({ movie }) {
     <div
       id={id}
       key={id}
-      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer transition duration-500 hover:scale-x-105 hover:z-50"
+      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer"
     >
       <div className="relative overflow-hidden">
         <img
