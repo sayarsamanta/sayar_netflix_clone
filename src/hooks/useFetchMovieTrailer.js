@@ -15,7 +15,7 @@ function useFetchMovieTrailer({ id }) {
   };
   useEffect(() => {
     fetchMovieVideo();
-  }, []);
+  }, [id]);
   return <div></div>;
 }
 

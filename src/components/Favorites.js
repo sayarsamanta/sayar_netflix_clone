@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundImage from "./BackgroundImage";
 import { useSelector } from "react-redux";
 import MovieCard from "./movie/MovieCard";
 function Favorites() {

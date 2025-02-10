@@ -16,7 +16,6 @@ function ModalComponent() {
     (store) => store.movie
   );
   const { width } = useWindowDimensions();
-  console.log(width);
   const customStyles = {
     content: {
       top: "50%",
@@ -48,7 +47,6 @@ function ModalComponent() {
     key,
     original_title,
     overview,
-    tagline,
     spoken_languages,
     production_companies,
     genres,

@@ -39,7 +39,7 @@ function Header() {
       }
     });
     return () => listener();
-  }, []);
+  }, [dispatch, navigate, storedData?.user_id]);
 
   const signOutUser = () => {
     if (user?.user_id || storedData?.user_id) {
