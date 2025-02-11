@@ -12,7 +12,6 @@ import { MdFavoriteBorder } from "react-icons/md";
 import netflix from "../assets/netflix.png";
 function Header() {
   const { user } = useSelector((store) => store?.user);
-  const { favorites } = useSelector((store) => store?.favorite);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
