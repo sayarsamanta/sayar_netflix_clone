@@ -9,8 +9,10 @@ import { profileImage } from "../utils/constants";
 import { FaSearch } from "react-icons/fa";
 import { setShowSearch } from "../redux/slice/SearchSlice";
 import { MdFavoriteBorder } from "react-icons/md";
+import netflix from "../assets/netflix.png";
 function Header() {
   const { user } = useSelector((store) => store?.user);
+  const { favorites } = useSelector((store) => store?.favorite);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -60,19 +62,19 @@ function Header() {
       });
   };
   return (
-    <div className="flex absolute z-50 w-screen bg-gradient-to-b from-black justify-between px-5 items-center">
+    <div className="flex absolute w-screen bg-gradient-to-b from-black justify-between px-5 top-[10px] items-center bg-transparent">
       <img
         alt="logo"
         onClick={() => {
           dispatch(setShowSearch());
           navigate("/");
         }}
-        src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        className="bg-cover bg-no-repeat w-20 sm:w-30 md:w-40 lg:w-40 xl:w-40 cursor-pointer"
+        src={netflix}
+        className="w-[15%] cursor-pointer"
       ></img>
       {(user?.user_id || storedData?.photoURL) && (
         <div className="group">
-          <div className="flex justify-center items-center">
+          <div className="flex relative justify-center items-center">
             <Link to={"favorites"}>
               <MdFavoriteBorder
                 fill="white"
@@ -82,6 +84,11 @@ function Header() {
                 //   navigate("favorites");
                 // }}
               />
+              {favorites?.length && (
+                <p className="text-white text-center w-3 h-3 text-[8px] absolute top-[2%] sm:top-[15%] bg-red-500 rounded-full left-[10%] z-40 ">
+                  {favorites?.length}
+                </p>
+              )}
             </Link>
             <FaSearch
               onClick={(e) => {
@@ -105,8 +112,11 @@ function Header() {
           </div>
 
           {showMenu && user && (
-            <div className="w-32 h-10 flex bg-white text-black rounded-md absolute right-4 top-20 z-30 justify-center items-center">
-              <IoIosArrowUp className="absolute -top-4 right-4 " fill="white" />
+            <div className="w-32 h-10 flex bg-white text-black rounded-md absolute right-4 top-[50px] sm:top-[60px] md:top-[80px] lg:top-[80px] xl:top-[90px] z-30 justify-center items-center">
+              <IoIosArrowUp
+                className="absolute -top-4 right-[4px] "
+                fill="white"
+              />
               <p
                 className="cursor-pointer"
                 onClick={() => {

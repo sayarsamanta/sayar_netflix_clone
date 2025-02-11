@@ -14,9 +14,9 @@ function VideoPlayer(id) {
     ? filteredMovies[0].key
     : movieTrailer[0].key;
   return (
-    <div className="bg-black">
+    <div className="">
       <iframe
-        class="h-full w-screen aspect-video border: none m:none; p:none pointer-events-none"
+        class="h-screen w-screen aspect-video border: none m:none; p:none pointer-events-none"
         title="Youtube player"
         allow="autoplay; encrypted-media"
         sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"

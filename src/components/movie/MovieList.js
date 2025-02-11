@@ -3,16 +3,16 @@ import MovieCard from "./MovieCard";
 
 function MovieList({ title, movies }) {
   return (
-    <div className="mx-5 mt-3 rounded-md">
+    <div className="mx-5 rounded-md">
       <div className="p-3">
         <h1 className="text-white text-sm md:text-lg lg:text-xl xl:text-xl font-semibold">
           {title}
         </h1>
 
-        <div className="flex overflow-x-scroll mt-2">
+        <div className="flex overflow-x-scroll">
           <div
             id="parent"
-            className="flex cursor-pointer"
+            className="flex cursor-pointer "
             // onClick={(e) => {
             //   //console.log(e.currentTarget);
             //   document.querySelector("#parent").addEventListener(
