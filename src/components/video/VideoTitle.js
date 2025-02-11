@@ -35,7 +35,7 @@ function VideoTitle({ itemIndex }) {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="py-[30%] sm:py-[75%] md:py-[50%] lg:py-[30%] xl:py-60 px-8 text-white absolute bg-gradient-to-t from-black w-screen">
+    <div className="py-[30%] sm:py-[70%] md:py-[40%] lg:py-[30%] xl:py-60 px-8 text-white absolute bg-gradient-to-t from-black w-screen h-screen">
       <img
         className="hidden w-56 rounded-md"
         alt="movieposter"

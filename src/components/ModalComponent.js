@@ -36,6 +36,9 @@ function ModalComponent() {
           ? "70%"
           : "60%",
     },
+    overlay: {
+      background: "black",
+    },
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +58,7 @@ function ModalComponent() {
     runtime,
   } = movieDetails;
   return (
-    <div className="bg-white">
+    <div className="">
       <Modal
         isOpen={showModal}
         //onAfterOpen={afterOpenModal}
@@ -63,28 +66,31 @@ function ModalComponent() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div className="bg-black scale-[1]">
-          <h1 className="text-white text-lg mt-3 absolute">{original_title}</h1>
-          <span className="text-xs absolute mt-9 text-white ">
-            {release_date}
-          </span>
+        <div className="bg-black">
+          <div className=" flex justify-between items-start self-start right-32 mt-8">
+            <div className="">
+              <h1 className="text-white text-lg w-[200px]">{original_title}</h1>
+              <span className="text-xs text-white ">{release_date}</span>
+            </div>
+
+            <div
+              className="h-11 cursor-pointer right-10 justify-end items-end flex"
+              onClick={() => {
+                onCloseModal();
+              }}
+            >
+              <IoCloseCircle fill="white" size={40} />
+            </div>
+          </div>
+
           <iframe
             width={width < 800 ? "100%" : "100%"}
             class="h-[500px] aspect-video rounded-md"
             title="Youtube player"
             allow="autoplay; encrypted-media"
             sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
-            src={`https://youtube.com/embed/${key}?autoplay=1&mute=1&showinfo=0&controls=0&modestbranding=1&autohide=1&playsinline=1&color=white&loop=1&playlist=${key}`}
+            src={`https://youtube.com/embed/${key}?autoplay=1&mute=1&showinfo=0&controls=0&modestbranding=1&autohide=1&playsinline=1&loop=1&playlist=${key}`}
           ></iframe>
-          <div className="z-10 absolute top-10 right-0 m-4 cursor-pointer pointer-events: none ">
-            <IoCloseCircle
-              onClick={() => {
-                onCloseModal();
-              }}
-              fill="white"
-              size={40}
-            />
-          </div>
 
           <div
             //to={`/player/${id}`}

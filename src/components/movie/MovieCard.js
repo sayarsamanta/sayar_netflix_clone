@@ -60,7 +60,7 @@ function MovieCard({ movie }) {
     <div
       id={id}
       key={id}
-      className="relative w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer"
+      className=" w-36 sm:w-44 md:w-52 lg:w-56 xl:w-[300px] mr-3 group shadow-lg mt-2 cursor-pointer"
     >
       <div className="relative overflow-hidden">
         <img
@@ -73,7 +73,7 @@ function MovieCard({ movie }) {
           onClick={() => {
             fetchMovieDetail(id);
           }}
-          className="rounded-full border-[0.5px] w-6 h-6 border-color absolute top-[45%] left-[45%] items-center flex justify-center"
+          className="rounded-full border-[0.5px] w-5 h-5 border-color absolute top-[40%] left-[40%] lg:top-[45%] lg:left-[45%]  items-center flex justify-center"
         >
           <IoPlay fill="white" size={15} />
         </div>

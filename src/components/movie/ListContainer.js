@@ -8,7 +8,7 @@ function ListContainer() {
   );
   if (!topRated?.length) return;
   return (
-    <div className="w-screen bg-black">
+    <div className="w-screen h-screen bg-black sm:bg-black md:bg-black lg:bg-transparent xl:bg-transparent">
       <div className="">
         <MovieList title={"Now Playing"} movies={nowPlaying}></MovieList>
         <div className="bg-black ">
