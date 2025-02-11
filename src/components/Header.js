@@ -62,7 +62,7 @@ function Header() {
       });
   };
   return (
-    <div className="flex absolute w-screen bg-gradient-to-b from-black justify-between px-5 top-[10px] items-center bg-transparent">
+    <div className="flex absolute w-screen bg-transparent justify-between px-5 py-3 sm:py-3 md:py-0 lg:py-0 xl:py-0 items-center ">
       <img
         alt="logo"
         onClick={() => {
@@ -74,8 +74,8 @@ function Header() {
       ></img>
       {(user?.user_id || storedData?.photoURL) && (
         <div className="group">
-          <div className="flex relative justify-center items-center">
-            <Link to={"favorites"}>
+          <div className="flex justify-center items-center">
+            <Link className="" to={"favorites"}>
               <MdFavoriteBorder
                 fill="white"
                 size={25}
@@ -84,12 +84,8 @@ function Header() {
                 //   navigate("favorites");
                 // }}
               />
-              {favorites?.length && (
-                <p className="text-white text-center w-3 h-3 text-[8px] absolute top-[2%] sm:top-[15%] bg-red-500 rounded-full left-[10%] z-40 ">
-                  {favorites?.length}
-                </p>
-              )}
             </Link>
+
             <FaSearch
               onClick={(e) => {
                 navigate("search");
