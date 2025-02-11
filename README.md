@@ -1,71 +1,59 @@
-# Getting Started with Create React App
+<h2 align="center">
+  Portfolio Website - v 1.0<br/>
+</h2>
+<div align="center">
+  <img alt="Demo" src="./images/gitreadme.png" />
+  <img alt="Demo" width="300" height="600" src="./images/mobile.png" />
+  
+</div>
+<a href="https://sayarupdatedprofile.netlify.app/" target="_blank">Demo</a>
+<br/>
+<br/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+>Created a basic netflix like clone using react and state.
+>Sign in and Sign up using firebase
+>Option to login via google sign in
+>Movie search page
+>Add to favorites from redux
+>Using react modal to show movie details
+>Using react player to show the clip or trailer of the movie
 
-## Available Scripts
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Use the package manager [npm](https://docs.npmjs.com/cli/v8/commands/npm-install) to install npm.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+clone this repository -> git clone https://github.com/sayarsamanta/sayar_netflix_clone.git
+navigate to project directory -> cd my-portfolio
+install npm -> npm install i
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) &nbsp;
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) &nbsp;
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com) &nbsp;
+## Built with
+ - React JS.
+ - Tailwind CSS.
+ - Context API.
+ - VS Code.
+ - Redux
+ - Google Sign in
+ - Firebase authentication
 
-### `npm test`
+## Usage and Instructions
+- Open the project folder and Navigate to `/src`.
+- All the required components is located inside this folder.
+- To run this in your local we need the client id, access token, tmdb api key
+- We need to change the firebaseConfig inside the src/utils directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contributing
 
-### `npm run build`
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Please make sure to update tests as appropriate.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# sayar_netflix_clone
+[MIT](https://choosealicense.com/licenses/mit/)
